@@ -1,6 +1,7 @@
 package com.futurice.rxandroidchatexercise;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,6 @@ import rx.subjects.BehaviorSubject;
 /**
  * Do not do this at home! This class is a trivial implementation of a repository and not optimized
  * for heavy usage or even thread safe. See for instance reark.io for more proper versions.
- *
  */
 public class ChatMessageRepository {
     private final Map<String, ChatMessage> messageMap = new HashMap<>();
@@ -22,7 +22,7 @@ public class ChatMessageRepository {
     private void updateList() {
         ArrayList<ChatMessage> messageList = new ArrayList<>();
         messageList.addAll(messageMap.values());
-        messageList.sort((a, b) -> {
+        Collections.sort(messageList, (a, b) -> {
             if (a.getTimestamp() > b.getTimestamp()) {
                 return 1;
             } else if (a.getTimestamp() < b.getTimestamp()) {
